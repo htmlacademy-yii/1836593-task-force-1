@@ -1,5 +1,7 @@
 <?php
 
+require_once '../../classes/Task.php';
+
 use TaskForce\classes\Task;
 
 $task = new Task('1', '2');
