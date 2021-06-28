@@ -51,17 +51,17 @@ class Task
     /**
      * @var string
      */
-    public $status;
+    public string $status;
 
     /**
      * @var string
      */
-    protected $customer_id;
+    protected string $customer_id;
 
     /**
      * @var string
      */
-    protected $contactor_id;
+    protected string $contactor_id;
 
     /**
      * Task constructor.
