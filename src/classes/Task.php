@@ -51,28 +51,77 @@ class Task
     /**
      * @var string
      */
-    public string $status;
+    private string $status;
 
     /**
-     * @var string
+     * @var int|null
      */
-    protected string $customer_id;
+    private ?int $customer_id;
 
     /**
-     * @var string
+     * @var int
      */
-    protected string $contactor_id;
+    private int $contactor_id;
 
     /**
      * Task constructor.
-     * @param string $customer_id
-     * @param string $contactor_id
+     * @param int $contactor_id
+     * @param int|null $customer_id
+     * @param string $status
      */
-    public function __construct (string $customer_id, string $contactor_id)
+    public function __construct (int $contactor_id, int $customer_id = null, string $status = self::STATUS_NEW)
+    {
+        $this->contactor_id = $contactor_id;
+        $this->customer_id = $customer_id;
+        $this->status = $status;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getCustomerId(): ?int
+    {
+        return $this->customer_id;
+    }
+
+    /**
+     * @param int|null $customer_id
+     */
+    public function setCustomerId(?int $customer_id): void
     {
         $this->customer_id = $customer_id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getContactorId(): int
+    {
+        return $this->contactor_id;
+    }
+
+    /**
+     * @param int $contactor_id
+     */
+    public function setContactorId(int $contactor_id): void
+    {
         $this->contactor_id = $contactor_id;
-        $this->status = self::STATUS_NEW;
     }
 
     /**
@@ -101,11 +150,12 @@ class Task
     }
 
     /**
-     * @param string $status
-     * @return string[]|null
+     * @param string|null $status
+     * @return string[]
      */
-    public function getAvailableActions(string $status): ?array
+    public function getAvailableActions(string $status = null): ?array
     {
-        return self::ACTIONS_BY_STATUS[$status] ?? null;
+        $computed_status = $status ?? $this->status;
+        return self::ACTIONS_BY_STATUS[$computed_status] ?? [];
     }
 }
