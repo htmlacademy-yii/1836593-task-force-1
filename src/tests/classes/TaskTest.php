@@ -1,11 +1,9 @@
 <?php
 
-namespace TaskForce\tests\classes;
-
-// task-3
+namespace taskforce\tests\classes;
 
 use PHPUnit\Framework\TestCase;
-use TaskForce\classes\Task;
+use taskforce\classes\Task;
 
 class TaskTest extends TestCase
 {
